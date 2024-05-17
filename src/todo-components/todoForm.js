@@ -29,14 +29,15 @@ function TodoForm ({
                 <br/>
                 <input
                 type = "checkbox"
-                value = {false}
+                // value = {checked ? (true):(false)}
                 // onChange={(e) => setStatusInput(e.target.value)}
                 onChange={(e) => setChecked(e.target.checked)}
+                
                 />
                 {checked ? (
-                <div> Task has been completed </div>
+                <div>Task has been completed</div>
             ) : (
-                <div> Task is not completed </div>
+                <div>Task is yet to-do</div>
             )}
             </label>
             <br/>

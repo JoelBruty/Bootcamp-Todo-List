@@ -6,15 +6,15 @@ function TodoList() {
     //List that the application starts with
 
     const [todoItems, setTodoItems] = useState([
-        { description: "Complete this react project", status: false, date: "15th May 2024" },
-        { description: "Something else", status: true, date: "12th February 2024" },
-        { description: "Another thing to do", status: false, date: "25th June 2024" },
+        { description: "Complete this react project", status: false, date: "15th May" },
+        { description: "Something else", status: true, date: "12th February" },
+        { description: "Another thing to do", status: false, date: "25th June" },
     ])
 
     //Usestates for description, status and date
 
     const [descriptionInput, setDescriptionInput] = useState("")
-    const [statusInput, setStatusInput] = useState("")
+    // const [statusInput, setStatusInput] = useState("")
     const [dateInput, setDateInput] = useState("")
 
     //Click handler, removes entry on clicking the delete button
@@ -29,18 +29,13 @@ function TodoList() {
 
     const handleSubmit = (e) => {
     e.preventDefault()
-    setTodoItems([...todoItems, {description: descriptionInput, status: statusInput, date: dateInput}])
+    setTodoItems([...todoItems, {description: descriptionInput, status: checked, date: dateInput}])
     setDescriptionInput("")
-    setStatusInput("")
+    // setStatusInput("")
     setDateInput("")
     }
 
-    //Checkbox
-
-    // const [isChecked, setIsChecked] = useState(false)
-    // const handleCheck = () => {
-    //     setIsChecked(!isChecked)
-    //     }
+    //Checkbox handler
 
     const [checked, setChecked] = useState(false); 
    function handleCheck(e) {
@@ -55,10 +50,11 @@ function TodoList() {
             handleCheck={handleCheck}
             checked={checked}
             setChecked={setChecked}
+
             descriptionInput={descriptionInput}
             setDescriptionInput={setDescriptionInput}
-            statusInput={statusInput}
-            setStatusInput={setStatusInput}
+            // statusInput={statusInput}
+            // setStatusInput={setStatusInput}
             dateInput={dateInput}
             setDateInput={setDateInput}/>
             <h2>To-do List</h2>

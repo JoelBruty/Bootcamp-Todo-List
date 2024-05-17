@@ -31,9 +31,7 @@ function TodoForm ({
                 type = "checkbox"
                 // value = {checked ? (true):(false)}
                 // onChange={(e) => setStatusInput(e.target.value)}
-                onChange={(e) => setChecked(e.target.checked)}
-                
-                />
+                onChange={(e) => setChecked(e.target.checked)}/>
                 {checked ? (
                 <div>Task has been completed</div>
             ) : (

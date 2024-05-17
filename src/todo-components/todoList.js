@@ -17,11 +17,27 @@ function TodoList() {
     // const [statusInput, setStatusInput] = useState("")
     const [dateInput, setDateInput] = useState("")
 
-    //Click handler, removes entry on clicking the delete button
+    //Click handlers
+    
+    //Removes entry on clicking the "Clear" button
 
     const handleClick = (index) => {
         let storedTodoItems = [...todoItems] //create array of current items in state
         storedTodoItems.splice(index, 1) //remove one item from index
+        setTodoItems(storedTodoItems) //set state to array
+    }
+
+    //Toggles the status of the entry when the "Toggle" button is clicked
+
+    const handleClickToggleCompleted = (index) => {
+        let storedTodoItems = [...todoItems] //create array of current items in state
+        // console.log(storedTodoItems[index])
+        if (storedTodoItems[index].status === true){ //If true/completed
+            storedTodoItems[index].status = false //Set to false/to-do
+        }
+        else {
+            storedTodoItems[index].status = true //Set to true/completed
+        }
         setTodoItems(storedTodoItems) //set state to array
     }
 
@@ -46,24 +62,39 @@ function TodoList() {
         <div>
             <h2>Add an item</h2>
             <TodoForm
+
+            //Handlers
+
             handleSubmit={handleSubmit}
             handleCheck={handleCheck}
             checked={checked}
             setChecked={setChecked}
 
+            //Input
+
             descriptionInput={descriptionInput}
             setDescriptionInput={setDescriptionInput}
+            
+            dateInput={dateInput}
+            setDateInput={setDateInput}
+            
             // statusInput={statusInput}
             // setStatusInput={setStatusInput}
-            dateInput={dateInput}
-            setDateInput={setDateInput}/>
+            />
             <h2>To-do List</h2>
             <p>{todoItems.length} items in the list</p>
             <div>
                 <ul>
                     {todoItems.map(((item, index) => {
                         return (
-                            <TodoDisplay description={item.description} status={item.status} date={item.date} handleClick={() => handleClick(index)}/>)
+                            <TodoDisplay
+                            
+                            description={item.description}
+                            status={item.status}
+                            date={item.date}
+
+                            handleClick={() => handleClick(index)}
+                            handleClickToggleCompleted={() => handleClickToggleCompleted(index)}/>)
                     }))}
                 </ul>
             </div>

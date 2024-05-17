@@ -1,9 +1,8 @@
-function TodoDisplay ({description, status, date, handleClick}) {
+function TodoDisplay ({description, status, date, handleClick, handleClickToggleCompleted}) {
     return (
         <div>
             <li>
-                {/* <button>Mark</button> */}
-                <button onClick={handleClick}>Clear</button> - {status ? ("Completed") : ("To-do")} - {description} - {date}</li>
+            <button onClick={handleClickToggleCompleted}>{status ? ("✓ - Toggle") : ("✗ - Toggle")}</button><button onClick={handleClick}>Clear</button> - {status ? ("Completed") : ("To-do")} - {description} - {date}</li>
         </div>
     )
 }

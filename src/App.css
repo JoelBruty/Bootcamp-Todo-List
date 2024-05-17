@@ -1,0 +1,56 @@
+body {
+    text-align: center;
+    justify-items: center;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.flex-form {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    border-style: groove;
+}
+
+.flex-list {
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    padding: 5px;
+    border-style: groove;
+}
+
+.flex-list-item {
+    display: flex;
+    flex-direction: row;
+    background-color: beige;
+    padding: 5px;
+    justify-content: space-between;
+    border-style: groove;
+}
+
+.flex-list-item>div {
+    width: 20%;
+}
+
+.logo {
+    height: 60px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .logo {
+        animation: App-logo-spin infinite 4s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

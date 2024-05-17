@@ -1,8 +1,19 @@
-function TodoDisplay ({description, status, date, handleClick, handleClickToggleCompleted}) {
+function TodoDisplay ({description, status, date, handleClick, handleClickToggleCompleted, numberOfItems}) {
     return (
-        <div>
-            <li>
-            <button onClick={handleClickToggleCompleted}>{status ? ("✓ - Toggle") : ("✗ - Toggle")}</button><button onClick={handleClick}>Clear</button> - {status ? ("Completed") : ("To-do")} - {description} - {date}</li>
+        <div class="flex-list-item">
+            {/* {numberOfItems} */}
+            <div class="section">
+                <button onClick={handleClickToggleCompleted}>Toggle</button><button onClick={handleClick}>Clear</button>
+            </div>
+            <div class="section">
+                {status ? ("✓ Done") : ("✗ To-do")}
+            </div>
+            <div class="section">
+                {description}
+            </div>
+            <div class="section">
+                {date}
+            </div>
         </div>
     )
 }

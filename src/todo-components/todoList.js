@@ -18,7 +18,7 @@ function TodoList() {
     const [dateInput, setDateInput] = useState("")
 
     //Click handlers
-    
+
     //Removes entry on clicking the "Clear" button
 
     const handleClick = (index) => {
@@ -32,7 +32,7 @@ function TodoList() {
     const handleClickToggleCompleted = (index) => {
         let storedTodoItems = [...todoItems] //create array of current items in state
         // console.log(storedTodoItems[index])
-        if (storedTodoItems[index].status === true){ //If true/completed
+        if (storedTodoItems[index].status === true) { //If true/completed
             storedTodoItems[index].status = false //Set to false/to-do
         }
         else {
@@ -44,59 +44,73 @@ function TodoList() {
     //Submit handler, updates the state of todoItems 
 
     const handleSubmit = (e) => {
-    e.preventDefault()
-    setTodoItems([...todoItems, {description: descriptionInput, status: checked, date: dateInput}])
-    setDescriptionInput("")
-    // setStatusInput("")
-    setDateInput("")
+        e.preventDefault()
+        if (descriptionInput.length > 0) //Only add if the task description has been filled
+        {
+            if (dateInput === "") {
+                console.log("Empty date input")
+                // setDateInput("-")
+            }
+
+            setTodoItems([...todoItems, { description: descriptionInput, status: checked, date: dateInput }])
+            setDescriptionInput("") //Empty textbox input
+            setDateInput("") //Empty textbox input
+            // setChecked(false)
+        }
+        else {
+            alert("You need to provide a task to add to the list") //Give an alert to the user if a task hasn't been given
+        }
     }
 
     //Checkbox handler
 
-    const [checked, setChecked] = useState(false); 
-   function handleCheck(e) {
-      setChecked(e.target.checked);
-   }
+    const [checked, setChecked] = useState(false);
+    function handleCheck(e) {
+        setChecked(e.target.checked);
+    }
 
     return (
         <div>
             <h2>Add an item</h2>
-            <TodoForm
+            <div class="flex-form">
+                <TodoForm
 
-            //Handlers
+                    //Handlers
 
-            handleSubmit={handleSubmit}
-            handleCheck={handleCheck}
-            checked={checked}
-            setChecked={setChecked}
+                    handleSubmit={handleSubmit}
+                    handleCheck={handleCheck}
+                    setChecked={setChecked}
 
-            //Input
+                    //Input
 
-            descriptionInput={descriptionInput}
-            setDescriptionInput={setDescriptionInput}
-            
-            dateInput={dateInput}
-            setDateInput={setDateInput}
-            
-            // statusInput={statusInput}
-            // setStatusInput={setStatusInput}
-            />
+                    descriptionInput={descriptionInput}
+                    setDescriptionInput={setDescriptionInput}
+
+                    dateInput={dateInput}
+                    setDateInput={setDateInput}
+                    checked={checked}
+
+                // statusInput={statusInput}
+                // setStatusInput={setStatusInput}
+                />
+            </div>
+
             <h2>To-do List</h2>
-            <p>{todoItems.length} items in the list</p>
-            <div>
-                <ul>
-                    {todoItems.map(((item, index) => {
-                        return (
-                            <TodoDisplay
-                            
+            {todoItems.length > 0 ? (<p>{todoItems.length} items in the list</p>):(<p>There are no items in the list</p>)}
+            <div class="flex-list">
+                {todoItems.map(((item, index) => {
+                    return (
+                        <TodoDisplay
+
                             description={item.description}
                             status={item.status}
                             date={item.date}
 
                             handleClick={() => handleClick(index)}
-                            handleClickToggleCompleted={() => handleClickToggleCompleted(index)}/>)
-                    }))}
-                </ul>
+                            handleClickToggleCompleted={() => handleClickToggleCompleted(index)}
+                            
+                            numberOfItems={todoItems.length}/>)
+                }))}
             </div>
         </div>
     )
